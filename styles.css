@@ -1,3 +1,4 @@
+/* archivo styles.css */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -9,20 +10,20 @@ body {
     background-color: #47cf73;
     padding: 20px;
     box-sizing: border-box;
-}
-
-header, footer {
+    }
+    
+    header, footer {
     width: 100%;
     text-align: center;
     margin: 20px 0;
-}
-
-header h1, footer h1 {
+    }
+    
+    header h1, footer h1 {
     margin: 0;
     font-size: 2em;
-}
-
-.lista-de-invitados {
+    }
+    
+    .lista-de-invitados {
     width: 100%;
     max-width: 800px;
     margin: 20px 0;
@@ -32,9 +33,9 @@ header h1, footer h1 {
     box-sizing: border-box;
     display: grid;
     gap: 20px;
-}
-
-.card {
+    }
+    
+    .card {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 10px;
@@ -42,82 +43,90 @@ header h1, footer h1 {
     border: 1px solid #ddd;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card img {
+    }
+    
+    .card img {
     width: 100%;
     height: auto;
-}
-
-.card-details {
+    }
+    
+    .card-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.card-details div {
+    }
+    
+    .card-details div {
     margin: 5px 0;
-}
-
-@media (max-width: 768px) {
+    }
+    
+    @media (max-width: 768px) {
     .card {
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     }
-
+    
     .card img {
-        width: 100%;
-        height: auto;
+    width: 100%;
+    height: auto;
     }
-}
-
-.nav {
+    }
+    
+    /* aca se agrego el nav estilos con boton agregar */
+    .nav {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 20px 0;
-}
-
-.search-container {
+    }
+    
+    .search-container {
     display: flex;
     align-items: center;
     flex: 1;
-}
-
-.nav-input {
+    }
+    
+    .nav-input {
     padding: 10px;
     font-size: 16px;
     flex: 1;
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
-}
-
-.search-icon {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
+    }
+    
+    .search-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-left: 0;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-}
-
-.nav-button {
+    }
+    
+    .nav-button {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-@media (max-width: 768px) {
+    }
+    
+    .nav-button img {
+    width: 30px;
+    height: 30px;
+    }
+    
+    @media (max-width: 768px) {
     .nav {
-        flex-direction: column;
-        align-items: center;
+    flex-direction: column;
+    align-items: center;
     }
-
+    
     .search-container {
-        width: 80%;
-        margin: 10px 0;
+    width: 80%;
+    margin: 10px 0;
     }
-
+    
     .nav-button {
-        margin: 10px 0;
+    margin: 10px 0;
     }
-}
+    }
