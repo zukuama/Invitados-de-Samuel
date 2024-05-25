@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,27 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Lista de Invitados Samuel</h1>
     </header>
+    <nav class="nav">
+        <div class="search-container">
+            <input type="text" id="search-input" class="nav-input" placeholder="Buscar...">
+            <img src="source/search-icon.ico" alt="Buscar" class="search-icon">
+        </div>
+        <button id="add-button" class="nav-button">
+            <img src="source/add-icon.ico" alt="Agregar">
+        </button>
+    </nav>
     <main>
         <div class="lista-de-invitados" id="lista-de-invitados"></div>
     </main>
     <footer>
         <h1>Feliz Cumpleaños Samuel</h1>
     </footer>
+    <script src="search.js"></script>
 </body>
+
 </html>

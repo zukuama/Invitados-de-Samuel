@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Invitados Samuel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Lista de Invitados Samuel</h1>
+    </header>
+    <main>
+        <div class="lista-de-invitados" id="lista-de-invitados"></div>
+    </main>
+    <footer>
+        <h1>Feliz Cumpleaños Samuel</h1>
+    </footer>
+</body>
+
+</html>
+
+
+body {
+font-family: Arial, sans-serif;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+margin: 0;
+background-color: #47cf73;
+padding: 20px;
+box-sizing: border-box;
+}
+
+header, footer {
+width: 100%;
+text-align: center;
+margin: 20px 0;
+}
+
+header h1, footer h1 {
+margin: 0;
+font-size: 2em;
+}
+
+.lista-de-invitados {
+width: 100%;
+max-width: 800px;
+margin: 20px 0;
+padding: 10px;
+background-color: #ffffff;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+box-sizing: border-box;
+display: grid;
+gap: 20px;
+}
+
+.card {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+background-color: #f9f9f9;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+width: 100%;
+height: auto;
+}
+
+.card-details {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.card-details div {
+margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+.card {
+grid-template-columns: 1fr;
+}
+
+.card img {
+width: 100%;
+height: auto;
+}
+}
+
+// script.js
+
+function drawSheetName() {
+var queryString = encodeURIComponent('SELECT A, B, C, D, E');
+
+var query = new google.visualization.Query(
+'https://docs.google.com/spreadsheets/d/1RhL_I9NMXTi0nmDfDphv96vLPzuZqEKbwZNwOxU-6ZM/gviz/tq?sheet=Lista de
+Invitados&headers=1&tq=' + queryString);
+query.send(handleQueryResponse);
+}
+
+function handleQueryResponse(response) {
+if (response.isError()) {
+console.error('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+return;
+}
+
+var data = response.getDataTable();
+const listaDeInvitados = document.getElementById('lista-de-invitados');
+
+for (let i = 0; i < data.getNumberOfRows(); i++) { const invitado=data.getValue(i, 0); const cantidad=data.getValue(i,
+    1); const ninos=data.getValue(i, 2); const confirmado=data.getValue(i, 3); const imagenUrl=data.getValue(i, 4);
+    const card=document.createElement('div'); card.className='card' ; const img=document.createElement('img');
+    img.src=imagenUrl || 'https://via.placeholder.com/150' ; const details=document.createElement('div');
+    details.className='card-details' ; const invitadoDiv=document.createElement('div');
+    invitadoDiv.textContent=`Invitado: ${invitado}`; const cantidadDiv=document.createElement('div');
+    cantidadDiv.textContent=`Cantidad: ${cantidad}`; const ninosDiv=document.createElement('div');
+    ninosDiv.textContent=`Niños: ${ninos}`; const confirmadoDiv=document.createElement('div');
+    confirmadoDiv.textContent=`Confirmado: ${confirmado}`; details.appendChild(invitadoDiv);
+    details.appendChild(cantidadDiv); details.appendChild(ninosDiv); details.appendChild(confirmadoDiv);
+    card.appendChild(img); card.appendChild(details); listaDeInvitados.appendChild(card); } }
+    google.charts.load('current', {'packages':['corechart', 'table' ]}); google.charts.setOnLoadCallback(drawSheetName);

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Invitados Samuel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Lista de Invitados Samuel</h1>
+    </header>
+    <nav class="nav">
+        <div class="search-container">
+            <input type="text" id="search-input" class="nav-input" placeholder="Buscar...">
+            <img src="source/search-icon.ico" alt="Buscar" class="search-icon">
+        </div>
+        <button id="add-button" class="nav-button">
+            <img src="source/add-icon.ico" alt="Agregar">
+        </button>
+    </nav>
+    <main>
+        <div class="lista-de-invitados" id="lista-de-invitados"></div>
+    </main>
+    <footer>
+        <h1>Feliz Cumpleaños Samuel</h1>
+    </footer>
+    <script src="search.js"></script>
+</body>
+
+</html>
+
+body {
+font-family: Arial, sans-serif;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+margin: 0;
+background-color: #47cf73;
+padding: 20px;
+box-sizing: border-box;
+}
+
+header, footer {
+width: 100%;
+text-align: center;
+margin: 20px 0;
+}
+
+header h1, footer h1 {
+margin: 0;
+font-size: 2em;
+}
+
+.lista-de-invitados {
+width: 100%;
+max-width: 800px;
+margin: 20px 0;
+padding: 10px;
+background-color: #ffffff;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+box-sizing: border-box;
+display: grid;
+gap: 20px;
+}
+
+.card {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+background-color: #f9f9f9;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+width: 100%;
+height: auto;
+}
+
+.card-details {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.card-details div {
+margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+.card {
+grid-template-columns: 1fr;
+}
+
+.card img {
+width: 100%;
+height: auto;
+}
+}
+
+/* aca se agrego el nav estilos con boton agregar */
+.nav {
+width: 100%;
+display: flex;
+justify-content: center;
+margin: 20px 0;
+}
+
+.search-container {
+display: flex;
+align-items: center;
+flex: 1;
+}
+
+.nav-input {
+padding: 10px;
+font-size: 16px;
+flex: 1;
+border: 1px solid #ccc;
+border-radius: 4px 0 0 4px;
+}
+
+.search-icon {
+width: 30px;
+height: 30px;
+background-color: #fff;
+padding: 5px;
+border: 1px solid #ccc;
+border-left: 0;
+border-radius: 0 4px 4px 0;
+cursor: pointer;
+}
+
+.nav-button {
+background: none;
+border: none;
+cursor: pointer;
+}
+
+.nav-button img {
+width: 30px;
+height: 30px;
+}
+
+@media (max-width: 768px) {
+.nav {
+flex-direction: column;
+align-items: center;
+}
+
+.search-container {
+width: 80%;
+margin: 10px 0;
+}
+
+.nav-button {
+margin: 10px 0;
+}
+}
+
+
+
+/*****script.js****//
+function drawSheetName(searchTerm = '') {
+let queryString = 'SELECT A, B, C, D, E';
+const query = new google.visualization.Query(
+'https://docs.google.com/spreadsheets/d/1RhL_I9NMXTi0nmDfDphv96vLPzuZqEKbwZNwOxU-6ZM/gviz/tq?sheet=Lista%20de%20Invitados&headers=1&tq='
++ encodeURIComponent(queryString));
+query.send(response => handleQueryResponse(response, searchTerm));
+}
+
+function handleQueryResponse(response, searchTerm) {
+if (response.isError()) {
+console.error('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+return;
+}
+
+const data = response.getDataTable();
+const listaDeInvitados = document.getElementById('lista-de-invitados');
+listaDeInvitados.innerHTML = '';
+
+let found = false;
+
+for (let i = 0; i < data.getNumberOfRows(); i++) { const invitado=data.getValue(i, 0); const cantidad=data.getValue(i,
+    1); const ninos=data.getValue(i, 2); const confirmado=data.getValue(i, 3); const imagenUrl=data.getValue(i, 4); //
+    Convertir valores a cadena y manejar valores null const invitadoStr=invitado ? invitado.toString().toLowerCase()
+    : '' ; const cantidadStr=cantidad ? cantidad.toString().toLowerCase() : '' ; const ninosStr=ninos ?
+    ninos.toString().toLowerCase() : '' ; const confirmadoStr=confirmado ? confirmado.toString().toLowerCase() : '' ; if
+    (searchTerm && !invitadoStr.includes(searchTerm.toLowerCase()) && !cantidadStr.includes(searchTerm.toLowerCase()) &&
+    !ninosStr.includes(searchTerm.toLowerCase()) && !confirmadoStr.includes(searchTerm.toLowerCase())) { continue; }
+    found=true; const card=document.createElement('div'); card.className='card' ; const
+    img=document.createElement('img'); img.src=imagenUrl || 'https://via.placeholder.com/150' ; const
+    details=document.createElement('div'); details.className='card-details' ; const
+    invitadoDiv=document.createElement('div'); invitadoDiv.textContent=`Invitado: ${invitado}`; const
+    cantidadDiv=document.createElement('div'); cantidadDiv.textContent=`Cantidad: ${cantidad}`; const
+    ninosDiv=document.createElement('div'); ninosDiv.textContent=`Niños: ${ninos}`; const
+    confirmadoDiv=document.createElement('div'); confirmadoDiv.textContent=`Confirmado: ${confirmado}`;
+    details.appendChild(invitadoDiv); details.appendChild(cantidadDiv); details.appendChild(ninosDiv);
+    details.appendChild(confirmadoDiv); card.appendChild(img); card.appendChild(details);
+    listaDeInvitados.appendChild(card); } if (!found) { alert('No se encuentra el invitado'); } }
+    google.charts.load('current', { 'packages' : ['corechart', 'table' ] }); google.charts.setOnLoadCallback(()=>
+    drawSheetName());
+
+
+    /****/ archivo searh.js ****/
+    document.getElementById('search-input').addEventListener('input', function () {
+    const searchTerm = this.value;
+    drawSheetName(searchTerm);
+    });
+
+    document.getElementById('add-button').addEventListener('click', function () {
+    // Aquí puedes agregar la funcionalidad para añadir invitados
+    alert('Función de agregar invitado no implementada aún.');
+    });
