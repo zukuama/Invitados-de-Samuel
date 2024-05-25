@@ -70,7 +70,6 @@ header h1, footer h1 {
     }
 }
 
-/* aca se agrego el nav estilos con boton agregar */
 .nav {
     width: 100%;
     display: flex;
@@ -93,12 +92,10 @@ header h1, footer h1 {
 }
 
 .search-icon {
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-left: 0;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
@@ -107,11 +104,6 @@ header h1, footer h1 {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.nav-button img {
-    width: 30px;
-    height: 30px;
 }
 
 @media (max-width: 768px) {
